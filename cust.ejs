@@ -1,0 +1,195 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECLECTIC</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/d7d7ee6600.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Josefin+Sans:ital,wght@0,300;0,400;1,600&family=Langar&family=Noto+Serif+JP:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .white {
+        color: white;
+      }
+
+      @media (max-width: 600px) {
+        .carousel-caption {
+          display: none;
+        }
+      }
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      table {
+        width: 50%;
+      }
+
+      tbody {
+        font-size: 0.75em;
+      }
+      body {
+        margin-top: 0px;
+        margin-bottom: 50px;
+        margin-right: 50px;
+        margin-left: 50px;
+        height: 100%;
+
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+    </style>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="center">
+            <div class="card white w-50" style="width: 40rem" ;>
+              <br />
+              <h4
+                class="card-header"
+                style="
+                  color: white;
+                  font-size: 2em;
+                  font-family: 'Josefin Sans', sans-serif;
+                "
+              >
+                MONEY TRANSFER
+              </h4>
+              <div class="card-body">
+                <div class="card-body">
+                  <form action="/money-transfer" method="post">
+                    <div class="form-group">
+                      <div class="col xs-9">
+                        <label
+                          for="sender"
+                          class="col-xs-3 control-label white"
+                          style="color: black"
+                          >SENDER</label
+                        >
+                        <input
+                          list="senders"
+                          class="form-control"
+                          name="sender"
+                        />
+                        <datalist id="senders">
+                          <% newListItems.forEach(function(item){ %>
+                          <option value="<%=item.name%>"></option>
+                          <% }) %>
+                        </datalist>
+                      </div>
+                      <div class="col xs-9">
+                        <label
+                          for="receiver"
+                          class="col-xs-3 control-label white"
+                          style="color: black"
+                          >RECEIVER</label
+                        >
+                        <input
+                          list="receivers"
+                          class="form-control"
+                          name="receiver"
+                        />
+                        <datalist id="receivers">
+                          <% newListItems.forEach(function(item){ %>
+                          <option value="<%=item.name%>"></option>
+
+                          <% }) %>
+                        </datalist>
+                      </div>
+                      <div class="col xs-9">
+                        <label
+                          for="amount"
+                          class="col-xs-3 control-label white"
+                          style="color: black"
+                          >AMOUNT</label
+                        >
+                        <input type="text" class="form-control" name="money" />
+                      </div>
+                    </div>
+                    <div class="mx-auto pb-4 pl-4 pr-4" style="width: 200px">
+                      <button
+                        type="submit"
+                        name="customers"
+                        class="btn-dark active btn-lg"
+                        style="background-color: rgb(32, 30, 30)"
+                      >
+                        CONFIRM
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6"></div>
+      </div>
+    </div>
+
+    <% if(danger != ''){%>
+    <div class="alert alert-danger">
+      <strong> <%=danger%> </strong>
+    </div>
+    <%}%> <% if(danger2 != ''){%>
+    <div class="alert alert-danger">
+      <strong><%=danger2%></strong>
+    </div>
+    <%}%>
+
+    <br />
+
+    <div class="pt-4 pb-4 pl-4 pr-4">
+      <span class="border border-5">
+        <table class="table white" style="background-color: wheat">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+
+              <th scope="col">Current Balance</th>
+            </tr>
+          </thead>
+          <% newListItems.forEach(function(item){ %>
+          <tbody>
+            <tr>
+              <td style="color: black"><%= item.name %></td>
+
+              <td style="color: black"><%= item.currentBalance %></td>
+            </tr>
+          </tbody>
+          <% }) %>
+        </table>
+      </span>
+    </div>
+    <br />
+    <br />
+  </body>
+</html>
